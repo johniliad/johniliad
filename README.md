@@ -3,7 +3,6 @@
 **Technology & Cybersecurity Executive | CIO / CISO / CTO Leadership**
 
 Official website: https://www.iliadis.net/
-GitHub: https://github.com/johniliad
 ORCID: https://orcid.org/0000-0002-0692-1535
 LinkedIn: https://www.linkedin.com/in/johniliadis/
 
