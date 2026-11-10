@@ -1,0 +1,394 @@
+# ===========================================================================================
+# .gitignore — github.com/johniliad/johniliad
+# -------------------------------------------------------------------------------------------
+# This repository is a PUBLIC GitHub Pages site and the public profile README at the same time.
+# Anything committed here is world-readable the moment it is pushed, is mirrored by the Pages
+# CDN, is copied by every scraper that already visits the domain, and survives in the git
+# history even after it is deleted in a later commit. Treat "git commit" as "publish".
+#
+# The rule this file enforces: a path may be committed only if it is part of the deployed
+# identity bridge — the eight root files below and the images in assets/img/ — and nothing else.
+#
+#   .gitignore  .nojekyll  CNAME  README.md  DEPLOY.md  index.html  robots.txt  sitemap.xml
+#   assets/img/*
+#
+# Everything else in this folder is working material: scratch scripts, screenshots, crop and
+# validator helpers, DNS and TLS dumps, crawl exports, browser network captures, editor state,
+# cloud-sync copies, credentials.
+#
+# Check before every push:
+#   git ls-files                                              # what will be published
+#   git status --short --ignored                              # what is withheld, and why
+#   git ls-files | git check-ignore --no-index --stdin -v     # must print nothing at all
+#
+# Syntax reminders: "#" starts a comment only on a line of its own (a trailing "#" is pattern
+# text); a leading "/" anchors the pattern to the repository root; a trailing "/" matches
+# directories only; "**" spans any depth; and "!" cannot re-include a file whose parent
+# directory is already excluded — which is why section 13 re-includes directories first.
+# ===========================================================================================
+
+# -------------------------------------------------------------------------------------------
+# 1. The deployed set is never ignored
+# -------------------------------------------------------------------------------------------
+# No rule below matches these paths; the negations are insurance. They exist so that a future
+# broad rule ("*", ".*", "*.md", "*.json", "/assets") cannot quietly remove something the live
+# site depends on. Dropping .nojekyll, for instance, would make Pages run Jekyll and discard
+# every file whose name begins with an underscore; dropping CNAME would detach the subdomain.
+!.gitignore
+!.nojekyll
+!CNAME
+!README.md
+!DEPLOY.md
+!index.html
+!robots.txt
+!sitemap.xml
+!/assets/img/**
+# If a /.well-known/security.txt is ever added, it belongs to the deployed set too: add it to
+# DEPLOY.md §1 and to this list rather than letting a rule swallow it.
+
+# -------------------------------------------------------------------------------------------
+# 2. Local scratch and session artefacts
+# -------------------------------------------------------------------------------------------
+# Working material for building and checking the bridge: headless-browser captures, crop and
+# screenshot helpers, validation and link-check reports, saved copies of the live profile HTML,
+# DNS and certificate dumps. None of it is served; all of it describes how the site was made.
+_tmp/
+_tmp.*
+_scratch/
+_work/
+_local/
+sandbox/
+tmp/
+temp/
+
+# -------------------------------------------------------------------------------------------
+# 3. Stray files at the repository root
+# -------------------------------------------------------------------------------------------
+# Every legitimate image lives under assets/img/, and every legitimate document is one of the
+# eight names in section 1. A raster image, an archive, a capture, a spreadsheet or a script
+# sitting at the root is therefore a leftover — a crop, a download, an export, a one-off helper
+# — and must not be published. This failure mode has already happened twice in this repository.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.gif
+/*.bmp
+/*.tif
+/*.tiff
+/*.pdf
+/*.csv
+/*.har
+/*.pcap
+/*.pcapng
+/*.mp4
+/*.mov
+/*.webm
+/*.exe
+/*.msi
+/*.dll
+/*.scr
+/*.ps1
+/*.psm1
+/*.bat
+/*.cmd
+/*.sh
+/*.tar
+/*.tar.gz
+/*.tgz
+/*.zip
+/*.rar
+/*.7z
+# These are root-scoped on purpose: assets/img/ keeps its .webp/.jpg/.png files.
+# /favicon.ico, /site.webmanifest and /manifest.json are deliberately absent from this list —
+# those would be legitimate deployments if ever added.
+# If a script is ever genuinely wanted at the root, commit it deliberately: git add -f deploy.ps1
+# Duplicate copies of a real page or document, produced by Explorer ("index (1).html") or by
+# OneDrive on a second machine ("index-DESKTOP-8F2A.html"). These are the most dangerous kind of
+# stray file, because they look exactly like the deployed document and carry stale content.
+/index-*.html
+/README-*.md
+/DEPLOY-*.md
+/*-Copy.*
+/* (*)*
+
+# -------------------------------------------------------------------------------------------
+# 4. Credentials, keys and tokens — the section that matters most in a public repository
+# -------------------------------------------------------------------------------------------
+# No credential belongs to this project, but a single accidental copy would be world-readable
+# immediately and would remain readable in the git history after any later deletion. This block
+# is deliberately over-broad: a false positive costs one "git add -f", a false negative cannot
+# be undone. Rotating to prove the point is not how you want to spend the afternoon.
+.env
+.env.*
+.envrc
+*.env
+# Private keys and cryptographic stores
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+*.keystore
+*.ppk
+*.kdbx
+*.kdb
+*.ovpn
+# SSH and GNU Privacy Guard material
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+.ssh/
+.gnupg/
+# Cloud, registry and package-manager credentials
+.aws/
+.azure/
+.netrc
+_netrc
+.git-credentials
+.npmrc
+.pypirc
+.yarnrc
+# Rendered configuration, service-account files, scribbled secrets
+credentials*.json
+secrets*.json
+secret*.json
+service-account*.json
+api-keys*
+api_keys*
+token.txt
+tokens.txt
+passwords*
+*.secret
+*.token
+
+# -------------------------------------------------------------------------------------------
+# 5. Reconnaissance and verification output
+# -------------------------------------------------------------------------------------------
+# DNS, WHOIS, certificate and crawl material produced while checking the domain and the live
+# Pages surface, plus browser network captures. HAR files record request and response headers
+# including cookies and bearer tokens; packet captures can contain anything that crossed the
+# wire, which on this machine means more than this repository.
+*.har
+*.pcap
+*.pcapng
+*.etl
+*.evtx
+dns*.txt
+*dns*.csv
+zone*.txt
+*zone*.csv
+dig*.txt
+nslookup*.txt
+whois*.txt
+*.zone
+lighthouse-report*
+*rich-results*.json
+*.axe.json
+axe-*.json
+pa11y*.json
+/report*.json
+/*-report.json
+/validation-report*
+
+# -------------------------------------------------------------------------------------------
+# 6. Operating-system noise
+# -------------------------------------------------------------------------------------------
+# Explorer thumbnails and shortcuts leak local paths and account names; crash and event dumps
+# can carry memory contents. None of it is ever part of a published page.
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+desktop.ini
+*.lnk
+$RECYCLE.BIN/
+*.stackdump
+*.dmp
+*.dump
+# macOS
+.DS_Store
+._*
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# Linux and generic
+.directory
+.nfs*
+*~
+~$*
+
+# -------------------------------------------------------------------------------------------
+# 7. Editors, IDEs and language-server state
+# -------------------------------------------------------------------------------------------
+# Editor scratch holds unsaved buffers, local history and language-server caches; the local
+# history folder in particular keeps full copies of files that were edited and reverted.
+.vscode/
+.vscode-test/
+.idea/
+.vs/
+*.iml
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.code-workspace
+.history/
+*.swp
+*.swo
+*.swn
+*.sublime-workspace
+.project
+.classpath
+.settings/
+.eslintcache
+.stylelintcache
+
+# -------------------------------------------------------------------------------------------
+# 8. AI assistant and agent scratch
+# -------------------------------------------------------------------------------------------
+# Session transcripts, prompt logs and tool-call dumps are the richest accidental source of text
+# that was never meant to be published — including drafts that were cut from the page on purpose.
+.aider*
+.claude/
+.continue/
+.cursor/
+.codeium/
+.copilot/
+.llm/
+prompts/
+
+# -------------------------------------------------------------------------------------------
+# 9. Tooling and build artefacts
+# -------------------------------------------------------------------------------------------
+# The bridge is static HTML with no build step, so anything this section matches was produced by
+# an ad-hoc experiment rather than by the site. The Jekyll entries below are a leftover of this
+# repository's first life as a Jekyll Pages site; .nojekyll disables that path now.
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+bower_components/
+dist/
+build/
+out/
+coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+_site/
+.bundle/
+vendor/bundle/
+
+# -------------------------------------------------------------------------------------------
+# 10. Logs and traces
+# -------------------------------------------------------------------------------------------
+# Build, crawl and console output. Console logs from a headless run routinely capture full URLs,
+# cookies and error payloads; nothing here is going to be served by GitHub Pages.
+*.log
+logs/
+*.trace
+
+# -------------------------------------------------------------------------------------------
+# 11. Media, design sources and office documents
+# -------------------------------------------------------------------------------------------
+# Files a person might drop in while producing the page, none of which belong on a public site:
+# layered design sources, video recordings, raw camera files and Office exports. Note that
+# .webp, .jpg and .png are NOT listed here — the deployed set needs them under assets/img/.
+*.psd
+*.xcf
+*.sketch
+*.fig
+*.indd
+*.ai
+*.mkv
+*.avi
+*.webm
+*.mp4
+*.mov
+*.raw
+*.cr2
+*.nef
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+*.odt
+*.ods
+*.odp
+*.pages
+*.numbers
+*.keynote
+
+# -------------------------------------------------------------------------------------------
+# 12. Cloud-sync and copy artefacts
+# -------------------------------------------------------------------------------------------
+# This folder lives inside OneDrive, which manufactures per-machine duplicates and conflict
+# copies whenever the same file is touched on two devices. Duplicates of the site's own documents
+# ("index-DESKTOP-8F2A.html") are caught by the root guards in section 3; sync debris and conflict
+# markers are caught here. These files look like real pages, they are stale, and they must never
+# be published next to the real ones.
+# Case is spelled out three ways on purpose: core.ignorecase makes Windows match case-insensitively
+# while a Linux CI checkout does not, and a rule that only works on one of them fails silently on
+# the other.
+*conflict*
+*Conflict*
+*CONFLICT*
+*.part
+*.partial
+*.crdownload
+*.download
+
+# -------------------------------------------------------------------------------------------
+# 13. Optional strict mode — deny everything that is not explicitly deployed
+# -------------------------------------------------------------------------------------------
+# The block below is inert. Uncomment it to invert the logic of the whole file: a path becomes
+# eligible for commit only if it is named here, so every new image must be added both to this
+# list and to DEPLOY.md §1 before it can deploy at all. Choose it only if you would rather see a
+# visible 404 than risk publishing something stray — the allow-list is maintained by hand, so it
+# can lag behind the assets directory. Directories are re-included before their contents, which
+# is required for "!" to work at all.
+#
+# /*
+# !/.gitignore
+# !/.nojekyll
+# !/CNAME
+# !/README.md
+# !/DEPLOY.md
+# !/index.html
+# !/robots.txt
+# !/sitemap.xml
+# !/assets/
+# /assets/*
+# !/assets/img/
+# /assets/img/*
+# !/assets/img/*.webp
+# !/assets/img/*.png
+# !/assets/img/*.jpg
+# !/assets/img/*.svg
+# ===========================================================================================
+# End of file. If you add a rule, add the reasoning above it: a silent ignore is how a needed
+# asset disappears from a deploy six months from now.
+# ===========================================================================================

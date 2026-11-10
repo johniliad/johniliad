@@ -1,0 +1,13 @@
+# https://github.iliadis.net/robots.txt
+# Official GitHub identity bridge of Dr. John Iliadis (github.com/johniliad)
+# Canonical entity: https://www.iliadis.net/
+
+User-agent: *
+Allow: /
+
+# Machine-readable entry points
+# Profile graph : https://github.iliadis.net/#profile  (Schema.org ProfilePage / Person)
+# Source        : https://github.com/johniliad/johniliad  (declared as ProfilePage.isBasedOn)
+# Sitemap       : https://github.iliadis.net/sitemap.xml
+
+Sitemap: https://github.iliadis.net/sitemap.xml
