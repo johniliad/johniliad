@@ -19,5 +19,3 @@ Elected to lead community engagement at <a href="https://isc2-chapter.gr/about-u
 
 ## Research & publications
 As a published researcher and invited thought leader, John has authored over 30 <a href="https://www.iliadis.net/publications/">articles</a> and <a href="https://orcid.org/0000-0002-0692-1535">research papers</a> on cybersecurity strategy, CISO leadership, cyber risk, AI governance and cloud security, and has delivered keynotes, opening speeches and panel moderation at major cybersecurity conferences in Greece and across EMEA.
-
-More info at his <a href="https://www.linkedin.com/in/johniliadis/">LinkedIn profile</a>.
