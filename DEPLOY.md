@@ -20,6 +20,7 @@ CNAME                                  github.iliadis.net
 .nojekyll                              serve files verbatim (no Jekyll build)
 robots.txt                             crawl policy + sitemap pointer
 sitemap.xml                            single-URL sitemap
+.well-known/security.txt                RFC 9116 disclosure contact (see below)
 .gitignore                             keeps local scratch out of history
 DEPLOY.md                              this file
 assets/img/john-iladis.webp            portrait used in both surfaces
@@ -42,8 +43,11 @@ stray root-level captures and exports, editor and language-server state, cloud-s
 copies, reconnaissance output (DNS, HAR, packet captures), design sources, office documents and
 anything resembling a credential are all excluded, and every block states why. Two checks keep
 the file honest before a push — `git ls-files` lists exactly what will be published, and
-`git ls-files | git check-ignore --no-index --stdin -v` must print nothing at all, because a
-tracked path matching an ignore rule means the rule is too broad.
+`git ls-files | Where-Object { git check-ignore -q --no-index -- $_; $LASTEXITCODE -eq 0 }` must
+print nothing at all, because a tracked path matching an ignore rule means the rule is too broad.
+The `--stdin -v` form of that second check cannot be trusted here: PowerShell appends a carriage
+return to every piped line, so `--stdin` receives `.gitignore\r`, which no rule matches, and `-v`
+prints negation matches as well — its output cannot separate a real hit from that noise.
 
 ### Repository visibility — this repository must stay public
 
@@ -57,10 +61,41 @@ repository would hide nothing that `github.iliadis.net` does not already serve �
 `ProfilePage.isBasedOn` → `codeRepository`, which now points at this repository as the page's
 source for every visitor and crawler.
 
-Measured state (2026-11-10): `private: false`, `visibility: public`, `has_pages: true`. The 17
-tracked files are HTML, Markdown, SVG and raster images — no scripts, no credentials, no
-environment files. `_tmp/` (the only place secrets could plausibly accumulate) has never appeared
-in any commit on any branch.
+Measured state (2026-11-10): `private: false`, `visibility: public`, `has_pages: true`. The 18
+tracked files are HTML, Markdown, one plain-text RFC 9116 file, SVG and raster images — no
+scripts, no credentials, no environment files. `_tmp/` (the only place secrets could plausibly
+accumulate) has never appeared in any commit on any branch.
+
+### The disclosure contact: `/.well-known/security.txt`
+
+RFC 9116 puts a machine-readable vulnerability contact at a fixed path, and this repository serves
+one at `https://github.iliadis.net/.well-known/security.txt`. Pages publishes it because
+`.nojekyll` is present: Jekyll silently drops dot-directories, whereas the flag stops Jekyll
+running at all, and `.txt` is served as `text/plain; charset=utf-8` — the media type §3 requires.
+
+Four field decisions, each deliberate:
+
+* **`Contact` is a web URI** (`https://www.iliadis.net/contact/`), not a `mailto:`. §2.5.3 accepts
+  a web page with contact information, that page is the single channel already published in the
+  footers of `index.html` and `README.md`, and a form does not hand a harvestable address to every
+  crawler (§5.8). When a security mailbox exists, it can be prepended: the first `Contact` is the
+  preferred one, the later one the fallback.
+* **`Canonical` names the file, not the site.** §2.5.2 defines it as the URI where the *file* is
+  located, and adds that a file retrieved from a URI absent from every `Canonical` field SHOULD
+  NOT be trusted. `Canonical: https://github.iliadis.net/` would therefore invalidate the file a
+  scanner had just fetched; the canonical URI is the well-known path itself.
+* **`Expires` is set 364 days ahead.** §2.5.5 makes the field mandatory, forbids repeating it and
+  recommends less than a year; the date is the renewal trigger in §9. An expired file is stale,
+  not merely old — parsers discard it (§5.3), which is worse than never having published one.
+* **No `Policy`, `Encryption`, `Acknowledgments` or `Hiring`**, because none of them would point at
+  something that exists, and an empty promise is worse than an absent field. The file is unsigned:
+  §2.3 only *recommends* an OpenPGP cleartext signature, no key is published for this domain, and
+  an `Encryption` field must carry a key URI, never a key.
+
+Scope is per host (§3.1): the file speaks for `github.iliadis.net` only — not for `www.iliadis.net`,
+not for `github.com/johniliad`, not for the applications the page describes. There is no
+`/security.txt` copy at the root: §3 prefers the well-known path, and Pages cannot issue the
+redirect §3 describes for the legacy location, so a second copy would only invite drift.
 
 ---
 
@@ -226,6 +261,8 @@ curl.exe -sSI https://github.iliadis.net/ | Select-String -Pattern "HTTP/|locati
 curl.exe -sS https://github.iliadis.net/robots.txt
 curl.exe -sS https://github.iliadis.net/sitemap.xml
 curl.exe -sS https://github.iliadis.net/CNAME
+curl.exe -sSI https://github.iliadis.net/.well-known/security.txt | Select-String -Pattern "HTTP/|content-type"
+curl.exe -sS https://github.iliadis.net/.well-known/security.txt
 
 # 4. Metadata actually served
 curl.exe -sS https://github.iliadis.net/ | Select-String -Pattern "canonical|og:image|application/ld\+json"
@@ -234,9 +271,15 @@ curl.exe -sS https://github.iliadis.net/ | Select-String -Pattern "canonical|og:
 curl.exe -sS https://github.com/johniliad | Select-String -Pattern 'rel="nofollow me"'
 
 # 6. Publication surface: nothing stale, nothing private
-git ls-files                                              # expect exactly the 17 files in §1
-git ls-files | git check-ignore --no-index --stdin -v      # expect no output (exit 1 = nothing ignored)
+git ls-files                                              # expect exactly the 18 files in §1
+git ls-files | Where-Object { git check-ignore -q --no-index -- $_; $LASTEXITCODE -eq 0 }   # expect no output
 git status --short --ignored                               # everything withheld, and by which rule
+
+# 7. security.txt is still fresh: Expires must exist, parse, and be in the future (RFC 9116 §2.5.5)
+$txt = (Invoke-WebRequest https://github.iliadis.net/.well-known/security.txt -UseBasicParsing).Content
+$exp = ([regex]::Match($txt, '(?m)^Expires:\s*(\S+)')).Groups[1].Value
+"Expires: $exp"
+[datetimeoffset]::Parse($exp) -gt [datetimeoffset]::UtcNow    # expect True
 ```
 
 Then, in a browser:
@@ -247,6 +290,7 @@ Then, in a browser:
 - [ ] `https://github.com/johniliad` renders the new README; every `assets/img/...` image displays.
 - [ ] Every "Live app" link in the Projects section opens the application.
 - [ ] `view-source:` on the live page contains no reference to `git.iliadis.net`.
+- [ ] `https://github.iliadis.net/.well-known/security.txt` opens as plain text — not a 404, not HTML — and [securitytxt.org](https://securitytxt.org/) reports one `Contact`, a future `Expires` and the well-known `Canonical`.
 - [ ] The *Identity, stated once* section shows the provenance note, and no graph disclosure is rendered on the page; `view-source:` still shows `"isBasedOn"` and `#source-repository` inside the `<head>` JSON-LD.
 - [ ] `https://github.com/johniliad/johniliad` shows **Homepage** `github.iliadis.net` in the right-hand *About* panel.
 - [ ] `https://github.com/johniliad` still lists `www.iliadis.net` among the profile links — that is the `rel="me"` half of the loop.
@@ -311,6 +355,7 @@ That is a change in the `www.iliadis.net` repository, not this one — this repo
 * New published project: add an `ItemList` entry in the JSON-LD **and** a card in the Projects grid, so the human and machine views stay in step.
 * New verified profile: add it to the *Verified profiles* grid, to `sameAs` in the JSON-LD, and to the identity table in `README.md`.
 * Changed portrait: replace `assets/img/john-iladis.webp` (keep the 180×179 display size in `README.md` and the `width`/`height` attributes in `index.html` in step with the real file) and regenerate the social card.
+* Before the `Expires` date in `.well-known/security.txt`: move it to 364 days from that day, and change `Contact` if the reporting channel changes. An expired file is discarded by parsers, so the date is a maintenance deadline rather than decoration — the checklist in §7 step 7 is the test.
 
 ### Rollback
 
@@ -328,3 +373,7 @@ Pages redeploys the previous commit within a minute; DNS and the certificate are
 This site states identity, not capability claims. It publishes no metrics that are not already
 documented on `iliadis.net`, cites no regulator beyond naming the instruments the applications
 implement, and makes no claim of certification, audit or endorsement by any authority.
+
+`.well-known/security.txt` publishes a reporting *channel*, not a permission to test: it invites no
+probing, and RFC 9116 §5.5 states that explicitly. Bug-bounty terms, safe-harbour language or a
+disclosure policy would each have to exist before any of them could be referenced.

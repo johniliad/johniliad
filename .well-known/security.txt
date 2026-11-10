@@ -1,0 +1,36 @@
+# security.txt - https://github.iliadis.net/.well-known/security.txt
+# Machine-readable vulnerability-disclosure contact for github.iliadis.net (RFC 9116).
+#
+# Scope (RFC 9116, section 3.1): this file applies to the host github.iliadis.net only. It does
+# not speak for www.iliadis.net, for github.com/johniliad, or for the applications the page
+# describes - each of those is a separate surface with its own owner.
+#
+# Contact is a web URI on purpose. Section 2.5.3 accepts "a web page with contact information",
+# and the contact page is the one channel already published on both surfaces (the footer of
+# index.html and the footer of README.md), so this file cannot drift away from them. It also
+# keeps a harvestable address out of a file that crawlers read (section 5.8).
+#
+# Expires is 364 days out rather than a year: section 2.5.5 requires the field and recommends a
+# value less than a year ahead, so the date doubles as the annual review trigger in DEPLOY.md
+# section 9. An expired file is stale, not merely old - parsers discard it (section 5.3).
+#
+# Canonical names this file, not the site (section 2.5.2). A parser that retrieves the file from
+# a URI absent from every Canonical field SHOULD NOT trust the contents, so pointing this at
+# https://github.iliadis.net/ would invalidate the file it just fetched.
+#
+# Deliberately absent: Policy, Acknowledgments, Hiring, Encryption. None of them would point at
+# something that exists, and an empty promise is worse than a missing field. The file is
+# unsigned - section 2.3 recommends an OpenPGP cleartext signature, but no key is published for
+# this domain, and an Encryption field must carry a key URI, never a key.
+#
+# The file is kept ASCII-only and CRLF-terminated (both allowed: sections 2.1 and 2.2, and CRLF
+# matches the rest of this working tree under core.autocrlf=true) so that nothing has to guess an
+# encoding while skipping comments.
+
+Contact: https://www.iliadis.net/contact/
+
+Expires: 2027-11-09T00:00:00Z
+
+Canonical: https://github.iliadis.net/.well-known/security.txt
+
+Preferred-Languages: en, el

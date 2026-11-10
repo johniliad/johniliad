@@ -9,5 +9,6 @@ Allow: /
 # Profile graph : https://github.iliadis.net/#profile  (Schema.org ProfilePage / Person)
 # Source        : https://github.com/johniliad/johniliad  (declared as ProfilePage.isBasedOn)
 # Sitemap       : https://github.iliadis.net/sitemap.xml
+# Security      : https://github.iliadis.net/.well-known/security.txt  (RFC 9116 disclosure contact)
 
 Sitemap: https://github.iliadis.net/sitemap.xml

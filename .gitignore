@@ -7,9 +7,10 @@
 # history even after it is deleted in a later commit. Treat "git commit" as "publish".
 #
 # The rule this file enforces: a path may be committed only if it is part of the deployed
-# identity bridge — the eight root files below and the images in assets/img/ — and nothing else.
+# identity bridge — the nine entries below and the images in assets/img/ — and nothing else.
 #
 #   .gitignore  .nojekyll  CNAME  README.md  DEPLOY.md  index.html  robots.txt  sitemap.xml
+#   .well-known/security.txt
 #   assets/img/*
 #
 # Everything else in this folder is working material: scratch scripts, screenshots, crop and
@@ -19,7 +20,12 @@
 # Check before every push:
 #   git ls-files                                              # what will be published
 #   git status --short --ignored                              # what is withheld, and why
-#   git ls-files | git check-ignore --no-index --stdin -v     # must print nothing at all
+#   git ls-files | Where-Object { git check-ignore -q --no-index -- $_; $LASTEXITCODE -eq 0 }
+#                                                             # must print nothing: no tracked path is ignored
+# Do not use "git ls-files | git check-ignore --no-index --stdin -v" for that third check: PowerShell
+# appends a carriage return to every piped line, so --stdin receives ".gitignore\r", which no rule
+# matches, and -v additionally prints negation matches. Its output cannot separate a real hit from
+# that noise in either direction.
 #
 # Syntax reminders: "#" starts a comment only on a line of its own (a trailing "#" is pattern
 # text); a leading "/" anchors the pattern to the repository root; a trailing "/" matches
@@ -43,8 +49,11 @@
 !robots.txt
 !sitemap.xml
 !/assets/img/**
-# If a /.well-known/security.txt is ever added, it belongs to the deployed set too: add it to
-# DEPLOY.md §1 and to this list rather than letting a rule swallow it.
+# The RFC 9116 disclosure contact is part of the deployed set too. Its directory is re-included
+# before the file, because "!" cannot re-add a file whose parent directory is already excluded —
+# section 13's "/*" would otherwise hide the whole directory.
+!/.well-known/
+!/.well-known/security.txt
 
 # -------------------------------------------------------------------------------------------
 # 2. Local scratch and session artefacts
@@ -65,7 +74,7 @@ temp/
 # 3. Stray files at the repository root
 # -------------------------------------------------------------------------------------------
 # Every legitimate image lives under assets/img/, and every legitimate document is one of the
-# eight names in section 1. A raster image, an archive, a capture, a spreadsheet or a script
+# nine names in section 1. A raster image, an archive, a capture, a spreadsheet or a script
 # sitting at the root is therefore a leftover — a crop, a download, an export, a one-off helper
 # — and must not be published. This failure mode has already happened twice in this repository.
 /*.png
@@ -380,6 +389,8 @@ logs/
 # !/index.html
 # !/robots.txt
 # !/sitemap.xml
+# !/.well-known/
+# !/.well-known/security.txt
 # !/assets/
 # /assets/*
 # !/assets/img/
