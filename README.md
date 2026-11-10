@@ -2,7 +2,7 @@
 
 20+ years directing cyber operations and resilient digital services.
 
-Hiw work spans cybersecurity strategy, secure architecture, cloud transformation, zero-trust adoption, AI governance and regulatory alignment — connecting security posture with business risk appetite and measurable outcomes. Selected quantified achievements include a 37% improvement in service availability (current role), 85% improvement in disaster recovery readiness, and zero-downtime infrastructure migration for tens of thousands of users.
+His work spans cybersecurity strategy, secure architecture, cloud transformation, zero-trust adoption, AI governance and regulatory alignment — connecting security posture with business risk appetite and measurable outcomes. Selected quantified achievements include a 37% improvement in service availability (current role), 85% improvement in disaster recovery readiness, and zero-downtime infrastructure migration for tens of thousands of users.
 
 His career began in information-security research, progressed through applied security R&D and enterprise infrastructure engineering, and evolved into technology and cybersecurity leadership spanning cyber resilience, risk, governance and digital transformation.
 
