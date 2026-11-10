@@ -1,4 +1,4 @@
-## Dr. <a href=https://www.iliadis.net/#john-iliadis">John ILIADIS</a>
+## Dr. <a href="https://www.iliadis.net/#john-iliadis">John ILIADIS</a>
 
 20+ years directing cyber operations and resilient digital services.
 
