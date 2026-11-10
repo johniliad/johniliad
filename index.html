@@ -361,6 +361,21 @@
     background: var(--panel-strong); color: var(--muted); font-size: 0.9rem;
   }
   .provenance code { color: var(--ink); }
+
+  .section-sub { padding-top: 44px; padding-bottom: 0; }
+  .pgp-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; }
+  .pgp-facts > div {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 18px; box-shadow: var(--shadow-sm);
+  }
+  .pgp-facts .wide { grid-column: 1 / -1; }
+  .pgp-facts dt {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal); font-weight: 700; margin: 0 0 6px;
+  }
+  .pgp-facts dd { margin: 0; color: var(--ink); }
+  .pgp-facts dd code { font-size: 0.9rem; letter-spacing: 0.02em; word-break: break-word; }
+
   code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.88em; }
 
   .site-footer { border-top: 1px solid var(--line); padding: 38px 0 46px; color: var(--muted); font-size: 0.86rem; }
@@ -369,7 +384,7 @@
   .disclaimer { font-size: 0.78rem; color: #5f707d; max-width: 90ch; }
 
   @media (max-width: 900px) {
-    .cards, .projects { grid-template-columns: 1fr; }
+    .cards, .projects, .pgp-facts { grid-template-columns: 1fr; }
   }
   @media (max-width: 820px) {
     .hero { grid-template-columns: 1fr; gap: 26px; padding: 48px 0 40px; }
@@ -676,6 +691,30 @@
           <p>There is no separate organisation, agency, trading name or social account attached to this domain. If a third party presents <em>github.iliadis.net</em> as anything other than this individual's bridge, it is wrong.</p>
         </article>
       </div>
+      <section id="openpgp" class="section-sub" aria-labelledby="openpgp-title">
+        <div class="section-head">
+          <h2 id="openpgp-title">OpenPGP Identity</h2>
+          <p>One certificate stands behind anything signed under this name. The values below are the ones to compare against a signature — and a fingerprint is only worth something if it is checked somewhere other than the page that published it.</p>
+        </div>
+        <dl class="pgp-facts">
+          <div>
+            <dt>Name</dt>
+            <dd>Dr. John Iliadis</dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:john@iliadis.net">john@iliadis.net</a></dd>
+          </div>
+          <div class="wide">
+            <dt>Primary OpenPGP fingerprint</dt>
+            <dd><code>39F2 42B3 8AA4 B545 6AB8 F95E 5B0B 2A36 0FA2 1D8E</code></dd>
+          </div>
+          <div class="wide">
+            <dt>Signing subkey</dt>
+            <dd><code>E3F6 3834 9A05 99FA F34E B131 8FC2 EADE 9F5D 419C</code></dd>
+          </div>
+        </dl>
+      </section>
       <p class="provenance">Provenance: both this page and the profile README are published from <a href="https://github.com/johniliad/johniliad">github.com/johniliad/johniliad</a>, which the graph names as <code>isBasedOn</code>. The repository is the origin of the page, not a competing identity — the canonical entity remains <code>https://www.iliadis.net/#john-iliadis</code>.</p>
     </section>
 
