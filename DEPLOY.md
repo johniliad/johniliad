@@ -292,6 +292,7 @@ Then, in a browser:
 - [ ] `view-source:` on the live page contains no reference to `git.iliadis.net`.
 - [ ] `https://github.iliadis.net/.well-known/security.txt` opens as plain text — not a 404, not HTML — and [securitytxt.org](https://securitytxt.org/) reports one `Contact`, a future `Expires` and the well-known `Canonical`.
 - [ ] The *Identity, stated once* section shows the provenance note, and no graph disclosure is rendered on the page; `view-source:` still shows `"isBasedOn"` and `#source-repository` inside the `<head>` JSON-LD.
+- [ ] `view-source:` shows `Person.identifier` as a `PropertyValue` whose `propertyID` is `OpenPGP fingerprint` and whose `value` matches the fingerprint printed in the *OpenPGP Identity* section — one key, stated in prose and in the graph.
 - [ ] `https://github.com/johniliad/johniliad` shows **Homepage** `github.iliadis.net` in the right-hand *About* panel.
 - [ ] `https://github.com/johniliad` still lists `www.iliadis.net` among the profile links — that is the `rel="me"` half of the loop.
 - [ ] The repository is still **public** (`(Invoke-RestMethod https://api.github.com/repos/johniliad/johniliad).private` returns `False`); a private repository silently removes the profile README.
@@ -355,6 +356,7 @@ That is a change in the `www.iliadis.net` repository, not this one — this repo
 * New published project: add an `ItemList` entry in the JSON-LD **and** a card in the Projects grid, so the human and machine views stay in step.
 * New verified profile: add it to the *Verified profiles* grid, to `sameAs` in the JSON-LD, and to the identity table in `README.md`.
 * Changed portrait: replace `assets/img/john-iladis.webp` (keep the 180×179 display size in `README.md` and the `width`/`height` attributes in `index.html` in step with the real file) and regenerate the social card.
+* Key material: a new OpenPGP fingerprint must change in three places at once — the *OpenPGP Identity* section of `index.html`, `Person.identifier` in the same file's JSON-LD, and the JSON example in `README.md` — otherwise the graph attests a certificate the page no longer shows.
 * Before the `Expires` date in `.well-known/security.txt`: move it to 364 days from that day, and change `Contact` if the reporting channel changes. An expired file is discarded by parsers, so the date is a maintenance deadline rather than decoration — the checklist in §7 step 7 is the test.
 
 ### Rollback

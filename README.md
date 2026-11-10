@@ -557,6 +557,11 @@ The identity bridge at [github.iliadis.net](https://github.iliadis.net/) publish
     "name": "John Iliadis",
     "honorificPrefix": "Dr.",
     "url": "https://www.iliadis.net/",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "OpenPGP fingerprint",
+      "value": "39F242B38AA4B5456AB8F95E5B0B2A360FA21D8E"
+    },
     "sameAs": [
       "https://github.com/johniliad",
       "https://www.iliadis.net/",
@@ -567,6 +572,8 @@ The identity bridge at [github.iliadis.net](https://github.iliadis.net/) publish
   }
 }
 ```
+
+`Person.identifier` carries the primary OpenPGP fingerprint as a Schema.org `PropertyValue` (`propertyID`: `OpenPGP fingerprint`) — the same 40-hex value the bridge page's *OpenPGP Identity* section displays — so a verifier can match a signature to this entity without parsing prose.
 
 The same graph is embedded in the bridge's HTML (`index.html`) and declared through `<link rel="me">` links on both sides. Published endpoints: [github.iliadis.net](https://github.iliadis.net/) · [sitemap.xml](https://github.iliadis.net/sitemap.xml) · [robots.txt](https://github.iliadis.net/robots.txt).
 
