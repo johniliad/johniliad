@@ -202,6 +202,21 @@
             "sameAs": ["https://github.com/johniliad/BRIG"],
             "author": { "@id": "https://www.iliadis.net/#john-iliadis" }
           }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "BoardSim",
+            "url": "https://boardsim.iliadis.net/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web browser",
+            "isAccessibleForFree": true,
+            "license": "https://www.apache.org/licenses/LICENSE-2.0",
+            "sameAs": ["https://github.com/johniliad/BoardSim"],
+            "author": { "@id": "https://www.iliadis.net/#john-iliadis" }
+          }
         }
       ]
     }
@@ -484,19 +499,19 @@
     <section id="projects" aria-labelledby="projects-title">
       <div class="section-head">
         <h2 id="projects-title">Projects &amp; code</h2>
-        <p>The public half of the <a href="https://www.iliadis.net/tools4u.html">Tools4U</a> toolkit — five applications that answer the five questions a board actually asks about cyber risk: what is happening, how prepared we are, what it could cost, what must happen when something goes wrong, and how performance is reported.</p>
+        <p>The public half of the <a href="https://www.iliadis.net/tools4u.html">Tools4U</a> toolkit — six applications that answer the six questions a board actually asks about cyber risk: what is happening, how prepared we are, what it could cost, what must happen when something goes wrong, how performance is reported, and what we should decide.</p>
       </div>
       <div class="projects">
 
         <article class="project project-wide">
           <a href="https://www.iliadis.net/tools4u.html">
-            <img src="assets/img/suite-hero.jpg" width="1200" height="800" loading="lazy"
-                 alt="The Executive Cyber Intelligence Suite — five cybersecurity assessment applications by Dr. John Iliadis" />
+            <img src="assets/img/suite-hero.webp" width="1200" height="800" loading="lazy"
+                 alt="The Iliadis Executive Cyber Decision Cycle — six cybersecurity applications by Dr. John Iliadis: ThreatPulse (Detect), CyberPulse (Assess), QuickRisk (Quantify), EU Cyber Incident (Respond), BRIG (Report) and BoardSim (Decide)" />
           </a>
           <div class="project-body">
             <span class="tag">Tools4U · Executive Cyber Intelligence Suite</span>
-            <h3>Five applications, one decision cycle</h3>
-            <p>ThreatPulse, CyberPulse, QuickRisk, EU Cyber Incident and BRIG form a repeatable cycle: detect, assess, quantify, respond, report. Free to use, self-hostable where open source, and built to show its working rather than assert a verdict.</p>
+            <h3>Six applications, one decision cycle</h3>
+            <p>ThreatPulse, CyberPulse, QuickRisk, EU Cyber Incident, BRIG and BoardSim form a repeatable cycle: detect, assess, quantify, respond, report, decide — and begin again. Free to use, self-hostable where open source, and built to show its working rather than assert a verdict.</p>
             <div class="links">
               <a href="https://www.iliadis.net/tools4u.html">Explore the toolkit</a>
               <a href="https://github.com/johniliad">Source on GitHub</a>
@@ -582,13 +597,29 @@
           </div>
         </article>
 
+        <article class="project">
+          <a class="thumb" href="https://boardsim.iliadis.net/">
+            <img src="assets/img/boardsim-logo.webp" width="680" height="172" loading="lazy"
+                 alt="BoardSim — Executive Cyber Decision Simulation" />
+          </a>
+          <div class="project-body">
+            <span class="tag">06 · Decide</span>
+            <h3>BoardSim</h3>
+            <p>What we should decide: a board-level decision simulator that puts leadership inside a live scenario and compares the options open to it — contain and recover, continue with controls, transform, or accept and transfer — across business impact, financial exposure, regulatory exposure, reputation, resilience and recovery time. A deterministic, server-authoritative engine scores the run; the interface never computes a score.</p>
+            <div class="links">
+              <a href="https://boardsim.iliadis.net/">Live app</a>
+              <a href="https://github.com/johniliad/BoardSim">Source</a>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
     <section id="open-source" aria-labelledby="oss-title">
       <div class="section-head">
         <h2 id="oss-title">Open source</h2>
-        <p>Three of the five applications are published under Apache-2.0 — small, self-hostable PHP/MySQL deployments of the kind a security team can run on infrastructure it already controls, without a SaaS dependency.</p>
+        <p>Four of the six applications are published under Apache-2.0 — small, self-hostable PHP/MySQL deployments of the kind a security team can run on infrastructure it already controls, without a SaaS dependency.</p>
       </div>
       <div class="table-scroll">
         <table class="repos">
@@ -618,6 +649,12 @@
             <td><a href="https://github.com/johniliad/BRIG">BRIG</a></td>
             <td>Board-ready security reporting</td>
             <td>React · TypeScript · Vite · Chart.js · PHP 8.3+ · MySQL (optional)</td>
+            <td>Apache-2.0</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/johniliad/BoardSim">BoardSim</a></td>
+            <td>Executive cyber decision simulation</td>
+            <td>React · TypeScript · Vite · PHP 8.2+ · MySQL</td>
             <td>Apache-2.0</td>
           </tr>
         </tbody>

@@ -128,11 +128,11 @@
 
 <div align="center">
   <a href="https://www.iliadis.net/tools4u.html">
-    <img src="assets/img/suite-hero.jpg" width="100%" alt="Iliadis Executive Cyber Intelligence Suite — the five cybersecurity assessment calculators and security executive tools: ThreatPulse, CyberPulse, QuickRisk, EU Cyber Incident and BRIG" />
+    <img src="assets/img/suite-hero.webp" width="100%" alt="Iliadis Executive Cyber Decision Cycle — the six applications of the suite orbiting one decision cycle: ThreatPulse (Detect), CyberPulse (Assess), QuickRisk (Quantify), EU Cyber Incident (Respond), BRIG (Report) and BoardSim (Decide)" />
   </a>
 </div>
 
-A free CISO toolkit of five applications that answer the five questions a board actually asks about cyber risk: **what is happening, how prepared we are, what it could cost, what must happen when something goes wrong, and how we report performance.** They are not standalone utilities — they form one repeatable decision cycle, and each one operationalises a discipline I practise as a technology and cybersecurity executive.
+A free CISO toolkit of six applications that answer the six questions a board actually asks about cyber risk: **what is happening, how prepared we are, what it could cost, what must happen when something goes wrong, how we report performance, and what we should decide.** They are not standalone utilities — they form one repeatable decision cycle, and each one operationalises a discipline I practise as a technology and cybersecurity executive.
 
 ```mermaid
 flowchart LR
@@ -140,7 +140,8 @@ flowchart LR
     B --> C["📊 QuickRisk<br/><b>QUANTIFY</b><br/>What could it cost?"]
     C --> D["⚖️ EU Cyber Incident<br/><b>RESPOND</b><br/>What must happen now?"]
     D --> E["📈 BRIG<br/><b>REPORT</b><br/>How do we report performance?"]
-    E -.->|"board reporting and regulatory exposure feed back into threat awareness"| A
+    E --> F["♟️ BoardSim<br/><b>DECIDE</b><br/>What should we decide?"]
+    F -.->|"decisions change exposure, priorities and resilience — new signals feed the next cycle"| A
 ```
 
 | Stage | Application | Executive question | Open source |
@@ -150,6 +151,7 @@ flowchart LR
 | **Quantify** | [QuickRisk](https://quickrisk.iliadis.net/) | *What matters financially and operationally?* | ✅ Apache-2.0 |
 | **Respond** | [EU Cyber Incident](https://www.iliadis.net/eucyber/) | *What happens if something goes wrong?* | — |
 | **Report** | [BRIG](https://brig.iliadis.net/) | *How do we report performance?* | ✅ Apache-2.0 |
+| **Decide** | [BoardSim](https://boardsim.iliadis.net/) | *What should we decide?* | ✅ Apache-2.0 |
 
 <p align="center">
   <a href="https://www.iliadis.net/tools4u.html"><img src="https://img.shields.io/badge/Explore_the_full_toolkit-Tools4U-0f766e?style=for-the-badge" alt="Tools4U — the free CISO toolkit" /></a>
@@ -326,15 +328,54 @@ EU Cyber Incident is an **executive regulatory blast-radius and SLA engine**. It
 
 ---
 
+### ♟️ Decide — BoardSim
+
+<div align="center">
+  <a href="https://boardsim.iliadis.net/">
+    <img src="assets/img/boardsim-hero.webp" width="720" alt="BoardSim banner — Executive Cyber Decision Simulation: a critical cyber incident, ransomware disrupting key business services with possible data exfiltration, leading to an executive decision across four options — contain, continue with controls, transform, accept or transfer — each simulated across multiple possible futures and compared on business impact, financial exposure, operational disruption, regulatory exposure, reputation, resilience and recovery time" />
+  </a>
+</div>
+
+> **The question it answers:** *what should we decide?*
+
+BoardSim is a board-level executive cyber decision simulator. It puts leadership inside a live scenario — ransomware disrupting key business services, with the possibility of data exfiltration — and forces the decision a board actually has to take: **contain and recover**, **continue operations with controls**, **transform security and resilience**, or **accept and transfer the risk**. Each option is simulated across multiple possible futures rather than a single forecast, so the trade-offs become explicit across business impact, financial exposure, operational disruption, regulatory exposure, reputation, resilience and recovery time.
+
+It is not another risk score, dashboard or compliance calculator. It is the **decision layer** that turns what the rest of the suite produced into a defensible choice — including the consequences of the alternatives not taken.
+
+<p>
+  <a href="https://boardsim.iliadis.net/"><img src="https://img.shields.io/badge/Launch_live-BoardSim-0f766e?style=flat-square&amp;logo=rocket&amp;logoColor=white" alt="Launch BoardSim" /></a>
+  <a href="https://github.com/johniliad/BoardSim"><img src="https://img.shields.io/badge/Source-Apache--2.0-0b1220?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Source code — Apache 2.0" /></a>
+  <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=flat-square&amp;logo=php&amp;logoColor=white" alt="PHP 8.2+" />
+  <img src="https://img.shields.io/badge/React-TypeScript-3178C6?style=flat-square&amp;logo=typescript&amp;logoColor=white" alt="React and TypeScript" />
+  <img src="https://img.shields.io/badge/MySQL-persisted_runs-4479A1?style=flat-square&amp;logo=mysql&amp;logoColor=white" alt="MySQL" />
+</p>
+
+<details>
+<summary><b>Why a simulator, and what the repository proves</b></summary>
+
+- **Server-authoritative by design.** The interface is a pure renderer: it never computes a score and never receives score deltas. The engine is implemented once, in PHP, where it can be pinned and tested.
+- **A pinned specification.** The 29 Markdown design documents in `requirements/`, `scenarios/` and `engine/` are SHA-256 pinned and immutable; `bin/verify-manifest.php` re-hashes all 29, and `.gitattributes` normalises every text file to LF so a fresh clone on Windows verifies byte-for-byte instead of breaking on line endings.
+- **Enumerated, not asserted.** `bin/enumerate.php` replays 2,268 decision paths and reproduces min 58 / max 84 / mean 71.15, with a determinism replay over the same corpus. Calibration reduced positional bias by 35%, and the dominance register is published rather than implied.
+- **Three pins per run.** Regulatory bundle, scoring policy and scenario content are recorded with every run, so a decision replays against exactly the policy that scored it — not against today's.
+- **Difficulty is a view, not a shortcut.** Leadership and executive views are measured separately and never merged; the board-crisis view refuses the request rather than guessing.
+- **Privacy by construction.** The public demo needs no account, is unscored and unpersisted — the scorer is never constructed. Saved runs are opt-in; share links are hashed, revocable, read-only and expire after seven days; erasure is a physical delete.
+- **Operational honesty.** Rate limiting answers `429` with `Retry-After`, one CSP and security-header policy is mirrored in Apache and drift-tested, and accessibility is measured — contrast ratios and target sizes are computed and asserted, not claimed.
+- **No third-party runtime dependencies.** The engine runs on a plain PHP 8.2+ / MySQL host; the web build embeds React and uses MIT/ISC/BSD build tooling only. Deployment is checked too: `bin/verify-deploy.php` compares the served shell byte-for-byte with the local build, because a release that changes only PHP and HTML keeps the same JavaScript asset hash and would otherwise look deployed.
+
+</details>
+
+---
+
 ## Open source
 
-Three of the five applications are published under **Apache-2.0**. They are small, self-hostable PHP/MySQL deployments — the kind of stack a security team can run on infrastructure it already controls, without a SaaS dependency.
+Four of the six applications are published under **Apache-2.0**. They are small, self-hostable PHP/MySQL deployments — the kind of stack a security team can run on infrastructure it already controls, without a SaaS dependency.
 
 | Application | Repository | Stack | Live | Licence |
 | :-- | :-- | :-- | :-- | :-- |
 | **ThreatPulse** | [`johniliad/ThreatPulse`](https://github.com/johniliad/ThreatPulse) | Python 3 (stdlib only) · PHP · MySQL | [threatpulse.iliadis.net](https://threatpulse.iliadis.net/) | Apache-2.0 |
 | **QuickRisk** | [`johniliad/QuickRisk`](https://github.com/johniliad/QuickRisk) | React · TypeScript · PHP 8.2+ · MySQL (optional) | [quickrisk.iliadis.net](https://quickrisk.iliadis.net/) | Apache-2.0 |
 | **BRIG** | [`johniliad/BRIG`](https://github.com/johniliad/BRIG) | React · TypeScript · Vite · Chart.js · PHP 8.3+ · MySQL (optional) | [brig.iliadis.net](https://brig.iliadis.net/) | Apache-2.0 |
+| **BoardSim** | [`johniliad/BoardSim`](https://github.com/johniliad/BoardSim) | React · TypeScript · Vite · PHP 8.2+ · MySQL | [boardsim.iliadis.net](https://boardsim.iliadis.net/) | Apache-2.0 |
 | *CyberPulse* | — | — | [CyberPulse](https://www.iliadis.net/cyberpulse.html) | closed source |
 | *EU Cyber Incident* | — | — | [EU Cyber Incident](https://www.iliadis.net/eucyber/) | closed source |
 
@@ -370,6 +411,21 @@ php tools/validate-model.php                    # calibration/model validation g
 php tools/live-smoke.php                        # QuickRisk Live request flow, in-memory
 ```
 
+**BoardSim** — Node 20+ to build the interface, PHP 8.2+ to serve it; no MySQL is needed for local work:
+
+```bash
+cd web && npm install && npm run build && cd ..  # build the SPA
+php bin/dev.php                                  # http://127.0.0.1:8100 — file store, no MySQL
+
+# verification gates
+php bin/verify-manifest.php                      # re-hash the 29 pinned specification files
+php bin/enumerate.php                            # 2,268 runs + determinism replay
+php bin/verify-regulatory.php                    # 67 regulatory invariants
+php bin/verify-scoring.php                       # 51 scoring invariants
+```
+
+`bin/dev.php` sets `BOARDSIM_DEV=1`, which swaps the MySQL store for a JSON file under `var/`; it exists so the front end can be developed without a database and must never be enabled on a public host.
+
 Each repository carries its own methodology, deployment guide and disclaimers. Read them before relying on an output.
 
 </details>
@@ -378,7 +434,7 @@ Each repository carries its own methodology, deployment guide and disclaimers. R
 
 ## How these tools are engineered
 
-The same principles show up in all five applications, and they are the principles I hold to in production infrastructure.
+The same principles show up in all six applications, and they are the principles I hold to in production infrastructure.
 
 - **Deterministic before clever.** A result must be reproducible from the same inputs and the same documented model version. AI, where present at all, may improve wording — never numbers, and never facts.
 - **Fail closed.** A degraded feed, an unvalidated document or an ambiguous threshold stops the process rather than emitting something plausible. Refusal is a failure state, not a warning.
@@ -388,7 +444,7 @@ The same principles show up in all five applications, and they are the principle
 - **Honest boundaries.** Assessment aids, not audits; directional signals, not certifications; simulations, not advice. Each application says so on its own pages and in print output.
 - **Testable by other people.** Golden scenarios, determinism tests and unit suites ship in the repository so reviewers can try to break the logic themselves.
 
-> **Disclosure:** all five applications are independently developed by Dr. John Iliadis. They are not official tools, assessments, certifications or endorsements of any authority, regulator or standards body — including CISA, ENISA, the Greek National Cybersecurity Authority or ISC2. They support, and never replace, professional judgement.
+> **Disclosure:** all six applications are independently developed by Dr. John Iliadis. They are not official tools, assessments, certifications or endorsements of any authority, regulator or standards body — including CISA, ENISA, the Greek National Cybersecurity Authority or ISC2. They support, and never replace, professional judgement.
 
 ---
 

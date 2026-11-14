@@ -26,12 +26,14 @@ DEPLOY.md                              this file
 assets/img/john-iladis.webp            portrait used in both surfaces
 assets/img/github-identity-mark.svg    favicon / brand mark
 assets/img/github-identity-social-card.png   1200x630 Open Graph card
-assets/img/suite-hero.jpg              Tools4U suite banner
+assets/img/suite-hero.webp              Tools4U suite banner — six-stage decision cycle
 assets/img/threatpulse-hero.jpg        ThreatPulse banner
 assets/img/cyberpulse-card.webp        CyberPulse card art
 assets/img/quickrisk-card.webp         QuickRisk card art
 assets/img/eu-cyber-incident-card.webp EU Cyber Incident card art
 assets/img/brig-card.webp              BRIG card art
+assets/img/boardsim-hero.webp          BoardSim section banner
+assets/img/boardsim-logo.webp          BoardSim card lockup
 _tmp/                                  local scratch (git-ignored, never published)
 ```
 
@@ -61,7 +63,7 @@ repository would hide nothing that `github.iliadis.net` does not already serve �
 `ProfilePage.isBasedOn` → `codeRepository`, which now points at this repository as the page's
 source for every visitor and crawler.
 
-Measured state (2026-11-10): `private: false`, `visibility: public`, `has_pages: true`. The 18
+Measured state (2026-11-14): `private: false`, `visibility: public`, `has_pages: true`. The 20
 tracked files are HTML, Markdown, one plain-text RFC 9116 file, SVG and raster images — no
 scripts, no credentials, no environment files. `_tmp/` (the only place secrets could plausibly
 accumulate) has never appeared in any commit on any branch.
@@ -181,8 +183,8 @@ GitHub's own infrastructure rather than to your zone.
 | `github.iliadis.net` DNS | resolves (`CNAME johniliad.github.io`) |
 | `https://github.iliadis.net/` | HTTP 404, `server: GitHub.com`, `strict-transport-security` present — Pages is reachable, the custom domain is simply not claimed yet |
 | all 22 outbound links in `index.html` | HTTP 200 (ResearchGate answers 403 to command-line clients; opens normally in a browser) |
-| 8 local assets referenced by `index.html` | present on disk |
-| 7 local images referenced by `README.md` | present on disk |
+| 9 local assets referenced by `index.html` | present on disk |
+| 8 local images referenced by `README.md` | present on disk |
 | JSON-LD blocks | both parse as valid JSON |
 | rendered layout | verified headless at 1300 px and 520 px — no overflow, no missing images |
 | page theme | light: white canvas, `#0b1220` ink, `#0f766e` accents, `theme-color` `#ffffff` |
@@ -271,7 +273,7 @@ curl.exe -sS https://github.iliadis.net/ | Select-String -Pattern "canonical|og:
 curl.exe -sS https://github.com/johniliad | Select-String -Pattern 'rel="nofollow me"'
 
 # 6. Publication surface: nothing stale, nothing private
-git ls-files                                              # expect exactly the 18 files in §1
+git ls-files                                              # expect exactly the 20 files in §1
 git ls-files | Where-Object { git check-ignore -q --no-index -- $_; $LASTEXITCODE -eq 0 }   # expect no output
 git status --short --ignored                               # everything withheld, and by which rule
 
@@ -356,6 +358,8 @@ That is a change in the `www.iliadis.net` repository, not this one — this repo
 * New published project: add an `ItemList` entry in the JSON-LD **and** a card in the Projects grid, so the human and machine views stay in step.
 * New verified profile: add it to the *Verified profiles* grid, to `sameAs` in the JSON-LD, and to the identity table in `README.md`.
 * Changed portrait: replace `assets/img/john-iladis.webp` (keep the 180×179 display size in `README.md` and the `width`/`height` attributes in `index.html` in step with the real file) and regenerate the social card.
+* Changed suite or project artwork: the source is a PNG; convert it to WebP at the size the page reserves — `suite-hero.webp` and `boardsim-hero.webp` at 1200×800 (q≈86), the `boardsim-logo.webp` lockup at 680×172 (q≈90) — then update the `width`/`height` attributes in *both* surfaces and the inventory in §1. Accept no substitute for the real pixel size: a declared box that disagrees with the file is a layout shift, not a rounding error.
+* Adding a seventh application: it touches the same places a sixth did — suite banner and its alt text, the mermaid cycle, the stage table, a `###` section, the `README.md` open-source table, the `ItemList`, a Projects card and the open-source `<table>` — plus `DEPLOY.md` §1 and the counts in §4. Any **"N of M"** count left unvisited is a factual error on a page whose value is that it can be checked.
 * Key material: a new OpenPGP fingerprint must change in three places at once — the *OpenPGP Identity* section of `index.html`, `Person.identifier` in the same file's JSON-LD, and the JSON example in `README.md` — otherwise the graph attests a certificate the page no longer shows.
 * Before the `Expires` date in `.well-known/security.txt`: move it to 364 days from that day, and change `Contact` if the reporting channel changes. An expired file is discarded by parsers, so the date is a maintenance deadline rather than decoration — the checklist in §7 step 7 is the test.
 
