@@ -128,7 +128,7 @@
 
 <div align="center">
   <a href="https://www.iliadis.net/tools4u.html">
-    <img src="assets/img/suite-hero.webp" width="100%" alt="Iliadis Executive Cyber Decision Cycle — the six applications of the suite orbiting one decision cycle: ThreatPulse (Detect), CyberPulse (Assess), QuickRisk (Quantify), EU Cyber Incident (Respond), BRIG (Report) and BoardSim (Decide)" />
+    <img src="assets/img/iliadis-executive-cyber-decision-cycle.webp" width="100%" alt="Iliadis Executive Cyber Decision Cycle — the six applications of the suite orbiting one decision cycle: ThreatPulse (Detect), CyberPulse (Assess), QuickRisk (Quantify), EU Cyber Incident (Respond), BRIG (Report) and BoardSim (Decide)" />
   </a>
 </div>
 
@@ -175,6 +175,7 @@ ThreatPulse is a threat-intelligence and vulnerability-prioritisation platform. 
 
 <p>
   <a href="https://threatpulse.iliadis.net/"><img src="https://img.shields.io/badge/Launch_live-ThreatPulse-0f766e?style=flat-square&amp;logo=rocket&amp;logoColor=white" alt="Launch ThreatPulse" /></a>
+  <a href="https://youtu.be/2Hq5_dG9_J8"><img src="https://img.shields.io/badge/Video_demo-YouTube-FF0000?style=flat-square&amp;logo=youtube&amp;logoColor=white" alt="Video demo on YouTube" /></a>
   <a href="https://github.com/johniliad/ThreatPulse"><img src="https://img.shields.io/badge/Source-Apache--2.0-0b1220?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Source code — Apache 2.0" /></a>
   <img src="https://img.shields.io/badge/Python_3-stdlib_only-3776AB?style=flat-square&amp;logo=python&amp;logoColor=white" alt="Python 3" />
   <img src="https://img.shields.io/badge/PHP-8.x-777BB4?style=flat-square&amp;logo=php&amp;logoColor=white" alt="PHP" />
@@ -242,6 +243,7 @@ QuickRisk is a FAIR-inspired quantitative cyber-risk assessment tool that expres
 
 <p>
   <a href="https://quickrisk.iliadis.net/"><img src="https://img.shields.io/badge/Launch_live-QuickRisk-0f766e?style=flat-square&amp;logo=rocket&amp;logoColor=white" alt="Launch QuickRisk" /></a>
+  <a href="https://youtu.be/4uHBT-c80IM"><img src="https://img.shields.io/badge/Video_demo-YouTube-FF0000?style=flat-square&amp;logo=youtube&amp;logoColor=white" alt="Video demo on YouTube" /></a>
   <a href="https://github.com/johniliad/QuickRisk"><img src="https://img.shields.io/badge/Source-Apache--2.0-0b1220?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Source code — Apache 2.0" /></a>
   <img src="https://img.shields.io/badge/React-TypeScript-3178C6?style=flat-square&amp;logo=typescript&amp;logoColor=white" alt="React and TypeScript" />
   <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=flat-square&amp;logo=php&amp;logoColor=white" alt="PHP 8.2+" />
@@ -307,6 +309,7 @@ EU Cyber Incident is an **executive regulatory blast-radius and SLA engine**. It
 
 <p>
   <a href="https://brig.iliadis.net/"><img src="https://img.shields.io/badge/Launch_live-BRIG-0f766e?style=flat-square&amp;logo=rocket&amp;logoColor=white" alt="Launch BRIG" /></a>
+  <a href="https://youtu.be/GMHAMwTGIQE"><img src="https://img.shields.io/badge/Video_demo-YouTube-FF0000?style=flat-square&amp;logo=youtube&amp;logoColor=white" alt="Video demo on YouTube" /></a>
   <a href="https://github.com/johniliad/BRIG"><img src="https://img.shields.io/badge/Source-Apache--2.0-0b1220?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Source code — Apache 2.0" /></a>
   <img src="https://img.shields.io/badge/React-TypeScript-3178C6?style=flat-square&amp;logo=typescript&amp;logoColor=white" alt="React and TypeScript" />
   <img src="https://img.shields.io/badge/Vite-Chart.js-F7B93E?style=flat-square&amp;logo=vite&amp;logoColor=white" alt="Vite and Chart.js" />
@@ -344,6 +347,7 @@ It is not another risk score, dashboard or compliance calculator. It is the **de
 
 <p>
   <a href="https://boardsim.iliadis.net/"><img src="https://img.shields.io/badge/Launch_live-BoardSim-0f766e?style=flat-square&amp;logo=rocket&amp;logoColor=white" alt="Launch BoardSim" /></a>
+  <a href="https://youtu.be/dXDKiQYx4WU"><img src="https://img.shields.io/badge/Video_demo-YouTube-FF0000?style=flat-square&amp;logo=youtube&amp;logoColor=white" alt="Video demo on YouTube" /></a>
   <a href="https://github.com/johniliad/BoardSim"><img src="https://img.shields.io/badge/Source-Apache--2.0-0b1220?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Source code — Apache 2.0" /></a>
   <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=flat-square&amp;logo=php&amp;logoColor=white" alt="PHP 8.2+" />
   <img src="https://img.shields.io/badge/React-TypeScript-3178C6?style=flat-square&amp;logo=typescript&amp;logoColor=white" alt="React and TypeScript" />

@@ -26,7 +26,7 @@ DEPLOY.md                              this file
 assets/img/john-iladis.webp            portrait used in both surfaces
 assets/img/github-identity-mark.svg    favicon / brand mark
 assets/img/github-identity-social-card.png   1200x630 Open Graph card
-assets/img/suite-hero.webp              Tools4U suite banner — six-stage decision cycle
+assets/img/iliadis-executive-cyber-decision-cycle.webp   Tools4U suite banner — six-stage decision cycle
 assets/img/threatpulse-hero.jpg        ThreatPulse banner
 assets/img/cyberpulse-card.webp        CyberPulse card art
 assets/img/quickrisk-card.webp         QuickRisk card art
@@ -358,7 +358,7 @@ That is a change in the `www.iliadis.net` repository, not this one — this repo
 * New published project: add an `ItemList` entry in the JSON-LD **and** a card in the Projects grid, so the human and machine views stay in step.
 * New verified profile: add it to the *Verified profiles* grid, to `sameAs` in the JSON-LD, and to the identity table in `README.md`.
 * Changed portrait: replace `assets/img/john-iladis.webp` (keep the 180×179 display size in `README.md` and the `width`/`height` attributes in `index.html` in step with the real file) and regenerate the social card.
-* Changed suite or project artwork: the source is a PNG; convert it to WebP at the size the page reserves — `suite-hero.webp` and `boardsim-hero.webp` at 1200×800 (q≈86), the `boardsim-logo.webp` lockup at 680×172 (q≈90) — then update the `width`/`height` attributes in *both* surfaces and the inventory in §1. Accept no substitute for the real pixel size: a declared box that disagrees with the file is a layout shift, not a rounding error.
+* Changed suite or project artwork: the source is a PNG; convert it to WebP at the size the page reserves — `iliadis-executive-cyber-decision-cycle.webp` at 1536×1024, `boardsim-hero.webp` at 1200×800 (q≈86), the `boardsim-logo.webp` lockup at 680×172 (q≈90) — then update the `width`/`height` attributes in *both* surfaces and the inventory in §1. Accept no substitute for the real pixel size: a declared box that disagrees with the file is a layout shift, not a rounding error.
 * Adding a seventh application: it touches the same places a sixth did — suite banner and its alt text, the mermaid cycle, the stage table, a `###` section, the `README.md` open-source table, the `ItemList`, a Projects card and the open-source `<table>` — plus `DEPLOY.md` §1 and the counts in §4. Any **"N of M"** count left unvisited is a factual error on a page whose value is that it can be checked.
 * Key material: a new OpenPGP fingerprint must change in three places at once — the *OpenPGP Identity* section of `index.html`, `Person.identifier` in the same file's JSON-LD, and the JSON example in `README.md` — otherwise the graph attests a certificate the page no longer shows.
 * Before the `Expires` date in `.well-known/security.txt`: move it to 364 days from that day, and change `Contact` if the reporting channel changes. An expired file is discarded by parsers, so the date is a maintenance deadline rather than decoration — the checklist in §7 step 7 is the test.
