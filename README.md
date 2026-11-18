@@ -617,6 +617,17 @@ The identity bridge at [github.iliadis.net](https://github.iliadis.net/) publish
     "name": "John Iliadis",
     "honorificPrefix": "Dr.",
     "url": "https://www.iliadis.net/",
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Technology and Cybersecurity Executive",
+      "occupationalCategory": [
+        "CIO",
+        "CISO",
+        "CTO",
+        "Cybersecurity Executive",
+        "Technology Executive"
+      ]
+    },
     "identifier": {
       "@type": "PropertyValue",
       "propertyID": "OpenPGP fingerprint",
