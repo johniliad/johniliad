@@ -642,7 +642,8 @@ The identity bridge at [github.iliadis.net](https://github.iliadis.net/) publish
       "https://www.linkedin.com/in/johniliadis/",
       "https://orcid.org/0000-0002-0692-1535",
       "https://peerlist.io/johniliadis",
-      "https://portfolio.iliadis.net"
+      "https://portfolio.iliadis.net",
+      "https://icsdweb.aegean.gr/info-sec-lab/member/?user=139"
     ]
   }
 }
@@ -654,7 +655,7 @@ The same graph is embedded in the bridge's HTML (`index.html`) and declared thro
 
 The bridge also states **where it is published from**: `ProfilePage.isBasedOn` → `https://github.iliadis.net/#source-repository`, a `SoftwareSourceCode` node whose `codeRepository`, `author` and `about` all point at this repository and this person. That pair of edges — *this page comes from this code* and *this code is about this person* — is what ties the repository to the identity without pretending a repository is a person.
 
-> Deliberately **not** in `Person.sameAs`: a repository is a work, not another profile of a human. `sameAs` stays reserved for surfaces that describe the same individual (GitHub account, website, identity bridge, LinkedIn, ORCID, Credly, Google Scholar, Peerlist, portfolio subdomain).
+> Deliberately **not** in `Person.sameAs`: a repository is a work, not another profile of a human. `sameAs` stays reserved for surfaces that describe the same individual (GitHub account, website, identity bridge, LinkedIn, ORCID, Credly, Google Scholar, Peerlist, portfolio subdomain, University of the Aegean lab member page).
 
 ---
 
