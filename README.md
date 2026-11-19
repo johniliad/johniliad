@@ -27,7 +27,7 @@
   <a href="https://github.iliadis.net"><img src="https://img.shields.io/badge/Identity_bridge-github.iliadis.net-0284c7?style=for-the-badge" alt="github.iliadis.net — identity bridge" /></a>
 </p>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&amp;weight=600&amp;size=21&amp;pause=1400&amp;color=2DD4BF&amp;center=true&amp;vCenter=true&amp;width=860&amp;height=45&amp;lines=Technology+%26+Cybersecurity+Executive;CIO+%7C+CISO+%7C+CTO+leadership+%7C+20%2B+years;PhD+%7C+CISSP+%7C+CISM+%7C+CRISC+%7C+C%7CCISO;I+build+the+tools+I+needed+as+a+CISO" alt="Technology and Cybersecurity Executive — CIO, CISO, CTO leadership — PhD, CISSP, CISM, CRISC, C|CISO" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&amp;weight=600&amp;size=21&amp;pause=1400&amp;color=2DD4BF&amp;center=true&amp;vCenter=true&amp;width=860&amp;height=45&amp;lines=Technology+%26+Cybersecurity+Executive;CIO+%7C+CISO+%7C+CTO+leadership+%7C+20%2B+years;PhD+%7C+CISSP+%7C+CISM+%7C+CRISC+%7C+C%7CCISO;I+build+the+decision+tools+I+wish+existed" alt="Technology and Cybersecurity Executive — CIO, CISO, CTO leadership — PhD, CISSP, CISM, CRISC, C|CISO" />
 
 <br /><br />
 
@@ -132,7 +132,9 @@
   </a>
 </div>
 
-A free CISO toolkit of six applications that answer the six questions a board actually asks about cyber risk: **what is happening, how prepared we are, what it could cost, what must happen when something goes wrong, how we report performance, and what we should decide.** They are not standalone utilities — they form one repeatable decision cycle, and each one operationalises a discipline I practise as a technology and cybersecurity executive.
+**An independently developed portfolio of six executive technology and cyber-risk decision-support applications addressing the six questions at different stages of the executive cyber decision cycle: what is happening, how prepared are we, what could it cost, what happens if something goes wrong, what does the board need to know, and what should we decide. The applications remain technically independent; what connects them is the decision process they support.**
+
+**The suite is where I make that executive practice inspectable: each application turns a recurring technology, cyber-risk, regulatory or board-level problem into a documented, testable decision system.**
 
 ```mermaid
 flowchart LR
@@ -154,7 +156,7 @@ flowchart LR
 | **Decide** | [BoardSim](https://boardsim.iliadis.net/) | *What should we decide?* | ✅ Apache-2.0 |
 
 <p align="center">
-  <a href="https://www.iliadis.net/tools4u.html"><img src="https://img.shields.io/badge/Explore_the_full_toolkit-Tools4U-0f766e?style=for-the-badge" alt="Tools4U — the free CISO toolkit" /></a>
+  <a href="https://www.iliadis.net/tools4u.html"><img src="https://img.shields.io/badge/Explore_the_full_toolkit-Tools4U-0f766e?style=for-the-badge" alt="Tools4U — ILIADIS Cyber Intelligence Suite" /></a>
   <a href="https://github.com/johniliad"><img src="https://img.shields.io/badge/Browse_the_code-GitHub-0b1220?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="GitHub repositories" /></a>
   <a href="https://www.iliadis.net/contact/"><img src="https://img.shields.io/badge/Request_a_walkthrough-Contact-0284c7?style=for-the-badge" alt="Contact" /></a>
 </p>
@@ -187,7 +189,7 @@ ThreatPulse is a threat-intelligence and vulnerability-prioritisation platform. 
 
 - **Seven-stage, deterministic, fail-closed pipeline:** collect → normalise → correlate → enrich → score → quality gate → publish. Same inputs produce the same document; anything uncertain is refused, not guessed.
 - **20+ source collectors** plus shared CVE-lookup and generic advisory engines, each reporting `ok` / `degraded` / `failed` — a degraded source falls back to a last-known-good snapshot, a required source aborts the run.
-- **624 unit tests** across 26 test files; Python standard library only, so an unattended VM run cannot break on a moved transitive dependency.
+- **629 unit tests** across 26 test files; Python standard library only, so an unattended VM run cannot break on a moved transitive dependency.
 - **A quality gate that refuses to transmit** a document failing structural, provenance, TLP or volume checks — a refusal is a run failure, never a warning.
 - **TLP:CLEAR enforced twice:** at read time on ingestion, and again against the finished publication.
 - **Stable identity:** a threat's identifier derives from the CVE alone (`sha256("threatpulse:cisa_kev:" + CVE)[:32]` as a UUID), so an identifier never changes because a different source won the scoring contest.
@@ -390,7 +392,7 @@ Four of the six applications are published under **Apache-2.0**. They are small,
 
 ```bash
 cd backend
-python3 -m unittest discover -s tests -t .      # 624 tests
+python3 -m unittest discover -s tests -t .      # 629 tests
 python3 run_pipeline.py --dry-run               # full pipeline, no publication
 ```
 
@@ -673,7 +675,7 @@ The bridge also states **where it is published from**: `ProfilePage.isBasedOn` �
 
 <h3>Toolkit &amp; research</h3>
 <ul>
-<li><a href="https://www.iliadis.net/tools4u.html">Tools4U — the free CISO toolkit</a></li>
+<li><a href="https://www.iliadis.net/tools4u.html">Tools4U — ILIADIS Cyber Intelligence Suite</a></li>
 <li><a href="https://github.com/johniliad">GitHub — /johniliad</a></li>
 <li><a href="https://www.iliadis.net/publications/">Publications</a></li>
 <li><a href="https://www.iliadis.net/talks/">Talks</a></li>
