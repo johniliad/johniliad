@@ -84,7 +84,7 @@
 | **Regulatory** | ISO 27001 · NIS2 · DORA · GDPR · EU AI Act · Cyber Resilience Act alignment |
 | **Education** | PhD, Information &amp; Communication Systems Security (University of the Aegean) · MSc, Information Security (Royal Holloway, University of London) |
 | **Credentials** | CISSP · CISM · CRISC · C&#124;CISO · ISSMP · CCSP · CCSK · CSSLP · SSCP · CMgr MCMI · COBIT · ITIL · DPO Executive |
-| **Community** | ISC2 Hellenic Chapter — President of the Board (2023–2025), Chair of the Audit Committee (2025–present) |
+| **Community** | ISC2 Hellenic Chapter — three consecutive elected terms (2021–2027): Board Member → President of the Board (2023–2025) → Chair of the Audit Committee (2025–present) · Advisory Board Member, MSc in Law and Information &amp; Communication Technologies, University of Piraeus (2025–present) |
 | **Based in** | Athens, Greece |
 
 > Leadership, to me, is the discipline of turning technical and regulatory complexity into decisions a board can act on — and then proving, with numbers, that the decision worked.
